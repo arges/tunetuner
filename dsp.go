@@ -9,7 +9,7 @@ import (
 
 var fin = make([]float64, width)
 
-func doFFT(audio *Audio, out []float64) int {
+func doFFT(audio *Audio) int {
 
 	// Read remaining bits
 	n, _ := audio.stream.AvailableToRead()
@@ -41,12 +41,9 @@ func doFFT(audio *Audio, out []float64) int {
 			max = fin[i]
 			max_i = i
 		}
-
-		// Scale down output
-		out[i/32] = fin[i/2]
 	}
 
-	// Render
+	// Return bin number
 	return max_i
 }
 
